@@ -10,7 +10,6 @@ export default function InputField({
   onError,
   errorMsg,
   onBlurError,
-  validateOnBlur = false,
 }) {
   const [isFocus, setIsFocus] = useState(false);
   const inputClass =

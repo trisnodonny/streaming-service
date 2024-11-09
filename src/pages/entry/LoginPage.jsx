@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import Button from "../../components/entry/Button";
-import Footer from "../../components/entry/Footer";
-import Header from "../../components/entry/Header";
-import InputField from "../../components/entry/InputField";
+import Button from "@components/entry/Button";
+import Footer from "@components/entry/Footer";
+import Header from "@components/entry/Header";
+import InputField from "@components/entry/InputField";
 
 export default function LoginPage() {
   const navigate = useNavigate();

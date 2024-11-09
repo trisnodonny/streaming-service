@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useFetchData } from "../../services/useFetchData";
-import Footer from "../../components/entry/Footer";
+import { useFetchData } from "@services/useFetchData";
+import Footer from "@components/entry/Footer";
+import welcomeImage from '@assets/welcome-image.jpg';
 
 export default function WelcomePage() {
   const options = {
@@ -14,9 +15,6 @@ export default function WelcomePage() {
   };
   const [url, setUrl] = useState("https://api.themoviedb.org/3/movie/popular");
   const { data, isPending, erorr } = useFetchData(url, options);
-
-  console.log(data);
-
   const [reasons, setReasons] = useState([
     "Exclusive Content",
     "Personalized Recommendations",
@@ -27,7 +25,8 @@ export default function WelcomePage() {
   return (
     <>
       <div className="relative bg-gradient-to-b from-zinc-700 to-black min-h-screen">
-        <header className="container mx-auto max-w-[1400px] text-white">
+        <img className="absolute opacity-10 z-0" src={welcomeImage} alt="welcome" />
+        <header className="container mx-auto max-w-[1400px] text-white relative z-10">
           <div className="flex items-center justify-between py-6 px-4">
             <div>logo</div>
             <Link
@@ -39,7 +38,7 @@ export default function WelcomePage() {
           </div>
         </header>
 
-        <main className="container mx-auto max-w-[1200px] p-8 text-white sm:px-6 md:px-8">
+        <main className="container mx-auto max-w-[1200px] p-8 text-white sm:px-6 md:px-8 relative z-10">
           <div className="w-full bg-blue-200 h-[450px] mx-auto mb-4 sm:mb-8"></div>
           <div className="max-w-[720px] mx-auto px-4 mb-4 sm:mb-8">
             <p className="text-center text-2xl sm:text-4xl font-bold">
@@ -76,21 +75,22 @@ export default function WelcomePage() {
                 consequatur!
               </p>
             </div>
-            <div className="w-full flex item-stretch flex-wrap justify-between gap-y-4">
+            <ul className="w-full flex item-stretch flex-wrap justify-between gap-y-4">
               {data?.results?.slice(0, 12).map((movie, index) => (
-                <Link
+                <li
                   key={index}
-                  to={"/login"}
                   className="w-[calc((100%/2)-10px)] sm:w-[calc((100%/4)-10px)] lg:w-[calc((100%/6)-10px)] rounded-lg overflow-hidden hover:scale-105 transition-all"
                 >
-                  <img
-                    className="w-full"
-                    src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                    alt={movie.title}
-                  />
-                </Link>
+                  <Link to={"/login"}>
+                    <img
+                      className="w-full"
+                      src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                      alt={movie.title}
+                    />
+                  </Link>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </main>
         <footer className="text-white">
