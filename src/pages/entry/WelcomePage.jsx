@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useFetchData } from "@services/useFetchData";
 import Footer from "@components/entry/Footer";
-import welcomeImage from "@assets/images/welcome-image.jpg";
+import heroImage from "@assets/images/hero-image.jpg";
 import welcomeImage2 from "@assets/images/welcome-image2.jpg";
 import exclusive from "@assets/icons/exclusive.png";
 import noAds from "@assets/icons/no-ads.png";
@@ -43,18 +43,22 @@ export default function WelcomePage() {
     },
   ]);
 
+  console.log(data);
+
   return (
     <>
-      <div className="relative bg-gradient-to-b from-zinc-800 to-black min-h-screen">
+      <div className="relative">
         <div
-          class="absolute bg-cover bg-center w-full h-lvh blur opacity-50"
+          className="absolute bg-cover bg-center w-full h-lvh blur opacity-50"
           style={{
-            backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 1), transparent), url(${welcomeImage2})`
+            backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 1), transparent), url(${welcomeImage2})`,
           }}
         ></div>
-        <header className="container mx-auto max-w-[1400px] text-white relative z-10">
+        <header className="container mx-auto max-w-[1400px] relative z-10">
           <div className="flex items-center justify-between py-6 px-4">
-            <div>logo</div>
+            <Link to={"/"} className="text-sky-700 font-bold text-4xl">
+              VM.
+            </Link>
             <Link
               className="flex items-center font-medium py-1 px-4 rounded-md bg-sky-700 hover:bg-sky-800 transition-all"
               to="/login"
@@ -64,8 +68,10 @@ export default function WelcomePage() {
           </div>
         </header>
 
-        <main className="container mx-auto max-w-[1200px] p-8 text-white sm:px-6 md:px-8 relative z-10">
-          <div className="w-full bg-sky-700 h-[300px] md:h-[350px] lg:h-[450px] mx-auto mb-4 sm:mb-6"></div>
+        <main className="container mx-auto max-w-[1200px] pb-8 px-8 sm:px-6 md:px-8 relative z-10">
+          <div className="flex w-full h-[300px] md:h-[350px] lg:h-[450px] mx-auto mb-4 sm:mb-8">
+            <img className="w-full object-cover shadow-zinc-500 shadow rounded-lg" src={heroImage} alt="hero-image" />
+          </div>
           <div className="max-w-[768px] mx-auto px-4 mb-4 sm:mb-8">
             <p className="text-center text-2xl sm:text-4xl font-bold">
               Stream the latest movies, hit TV shows, and exclusive content—on
@@ -74,14 +80,14 @@ export default function WelcomePage() {
           </div>
 
           <div className="w-full mx-auto mb-4 sm:mb-8">
-            <p className="text-xl md:text-3xl font-bold mb-2 sm:mb-4">
+            <p className="text-xl md:text-3xl font-black mb-2 sm:mb-4">
               Reasons to join us
             </p>
             <div className="w-full flex items-stretch flex-wrap justify-between gap-y-2">
               {reasons.map((reason) => (
                 <div
                   key={reason.id}
-                  className="flex items-center p-4 rounded-[1rem] bg-zinc-800 border border-zinc-700 lg:flex-col lg:items-start lg:gap-4 lg:justify-between w-full lg:w-[calc(25%-8px)]"
+                  className="flex items-center p-4 rounded-[1rem] bg-zinc-800 shadow-zinc-500 shadow lg:flex-col lg:items-start lg:gap-4 lg:justify-between w-full lg:w-[calc(25%-8px)]"
                 >
                   <p className="flex w-full font-bold">{reason.name}</p>
                   <div className="flex justify-end w-full">
@@ -116,7 +122,10 @@ export default function WelcomePage() {
                   key={index}
                   className="w-[calc((100%/2)-10px)] sm:w-[calc((100%/4)-10px)] lg:w-[calc((100%/6)-10px)] rounded-lg overflow-hidden hover:scale-105 transition-all"
                 >
-                  <Link to={"/login"}>
+                  <Link className="relative" to={"/login"}>
+                    <div className="absolute text-sky-700 font-black text-xl left-3 top-2">
+                      VM.
+                    </div>
                     <img
                       className="w-full"
                       src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
@@ -128,7 +137,8 @@ export default function WelcomePage() {
             </ul>
           </div>
         </main>
-        <footer className="text-white">
+
+        <footer className="container mx-auto max-w-[1200px]">
           <Footer />
         </footer>
       </div>

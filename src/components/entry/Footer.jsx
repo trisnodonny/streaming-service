@@ -9,8 +9,8 @@ export default function Footer() {
   ];
   return (
     <>
-      <footer className="border-t-2 border-black">
-        <footer className="container mx-auto py-8 md:py-16 px-8">
+      <div className="border-t-2 border-zinc-700">
+        <div className="container mx-auto p-8">
           <div className="w-full">
             <ul className="flex items-center justify-start flex-wrap">
               {cta.map((item, index) => (
@@ -22,8 +22,8 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-        </footer>
-      </footer>
+        </div>
+      </div>
     </>
   );
 }

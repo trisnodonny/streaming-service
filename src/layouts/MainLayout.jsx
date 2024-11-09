@@ -22,7 +22,9 @@ export default function MainLayout() {
 
   return (
     <>
-      <Outlet />
+      <div className="bg-gradient-to-b from-zinc-800 to-black min-h-screen">
+        <Outlet />
+      </div>
     </>
   );
 }
