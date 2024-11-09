@@ -45,14 +45,13 @@ export default function WelcomePage() {
 
   return (
     <>
-      <div className="relative bg-gradient-to-b from-zinc-700 to-black min-h-screen">
-        <div className="w-full h-full">
-          <img
-            className="absolute opacity-40 z-0 bg-blue-500 h-max w-full"
-            src={welcomeImage2}
-            alt="welcome"
-          />
-        </div>
+      <div className="relative bg-gradient-to-b from-zinc-800 to-black min-h-screen">
+        <div
+          class="absolute bg-cover bg-center w-full h-lvh blur opacity-50"
+          style={{
+            backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 1), transparent), url(${welcomeImage2})`
+          }}
+        ></div>
         <header className="container mx-auto max-w-[1400px] text-white relative z-10">
           <div className="flex items-center justify-between py-6 px-4">
             <div>logo</div>
@@ -66,7 +65,7 @@ export default function WelcomePage() {
         </header>
 
         <main className="container mx-auto max-w-[1200px] p-8 text-white sm:px-6 md:px-8 relative z-10">
-          <div className="w-full bg-blue-200 h-[450px] mx-auto mb-4 sm:mb-8"></div>
+          <div className="w-full bg-sky-700 h-[300px] md:h-[350px] lg:h-[450px] mx-auto mb-4 sm:mb-6"></div>
           <div className="max-w-[768px] mx-auto px-4 mb-4 sm:mb-8">
             <p className="text-center text-2xl sm:text-4xl font-bold">
               Stream the latest movies, hit TV shows, and exclusive content—on
@@ -84,7 +83,7 @@ export default function WelcomePage() {
                   key={reason.id}
                   className="flex items-center p-4 rounded-[1rem] bg-zinc-800 border border-zinc-700 lg:flex-col lg:items-start lg:gap-4 lg:justify-between w-full lg:w-[calc(25%-8px)]"
                 >
-                  <p className="flex w-full">{reason.name}</p>
+                  <p className="flex w-full font-bold">{reason.name}</p>
                   <div className="flex justify-end w-full">
                     <div className="w-[50px] h-[50px] bg-sky-700 p-2 rounded-full">
                       <img
