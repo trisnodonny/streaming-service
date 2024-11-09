@@ -6,6 +6,10 @@ export default function MyModal({ onClose, isVisible, movie }) {
     onClose();
   };
 
+  const handleOverflow = () => {
+    document.body.classList.remove("overflow-hidden");
+  };
+
   if (!isVisible) return null;
 
   return (
@@ -30,14 +34,20 @@ export default function MyModal({ onClose, isVisible, movie }) {
                 <span className="uppercase">Series</span>
               </div>
             </div>
-            <div className="p-8 flex flex-col gap-4">
+            <div className="p-8 flex flex-col gap-2">
               <h1 className="text-4xl font-bold">{movie.title}</h1>
               <ul className="flex gap-4">
                 <li>{movie.release_date.split("-")[0]}</li>
               </ul>
               <p className="line-clamp-2">{movie.overview}</p>
               <div className="py-2 px-4 bg-sky-700 hover:bg-sky-800 rounded-lg w-max cursor-pointer transition-all">
-                <Link to={"/login"}>Start Watching</Link>
+                <Link
+                  to={"/login"}
+                  className="font-bold"
+                  onClick={handleOverflow}
+                >
+                  Start Watching
+                </Link>
               </div>
             </div>
           </div>
