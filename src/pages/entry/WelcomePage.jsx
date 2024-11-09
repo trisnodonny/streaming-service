@@ -8,6 +8,7 @@ import exclusive from "@assets/icons/exclusive.png";
 import noAds from "@assets/icons/no-ads.png";
 import offlineViewing from "@assets/icons/offline-viewing.png";
 import personalize from "@assets/icons/personalize.png";
+import MyModal from "@components/entry/MyModal";
 
 export default function WelcomePage() {
   const options = {
@@ -42,18 +43,36 @@ export default function WelcomePage() {
       icon: offlineViewing,
     },
   ]);
+  const [showMyModal, setShowMyModal] = useState(false);
+  const [selectedMovie, setSelectedMovie] = useState(null);
 
-  console.log(data);
+  const handleShowMyModal = (movie) => {
+    setShowMyModal(true);
+    setSelectedMovie(movie);
+    document.body.classList.add("overflow-hidden");
+  };
+
+  const handleCloseMyModal = () => {
+    setShowMyModal(false);
+    document.body.classList.remove("overflow-hidden");
+  };
 
   return (
     <>
+      <MyModal
+        onClose={handleCloseMyModal}
+        isVisible={showMyModal}
+        movie={selectedMovie}
+      />
+
+      <div
+        className="absolute bg-cover bg-center w-full h-lvh blur opacity-50"
+        style={{
+          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 1), transparent), url(${welcomeImage2})`,
+        }}
+      ></div>
+
       <div className="relative">
-        <div
-          className="absolute bg-cover bg-center w-full h-lvh blur opacity-50"
-          style={{
-            backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 1), transparent), url(${welcomeImage2})`,
-          }}
-        ></div>
         <header className="container mx-auto max-w-[1400px] relative z-10">
           <div className="flex items-center justify-between py-6 px-4">
             <Link to={"/"} className="text-sky-700 font-bold text-4xl">
@@ -70,7 +89,11 @@ export default function WelcomePage() {
 
         <main className="container mx-auto max-w-[1200px] pb-8 px-8 sm:px-6 md:px-8 relative z-10">
           <div className="flex w-full h-[300px] md:h-[350px] lg:h-[450px] mx-auto mb-4 sm:mb-8">
-            <img className="w-full object-cover shadow-zinc-500 shadow rounded-lg" src={heroImage} alt="hero-image" />
+            <img
+              className="w-full object-cover shadow-zinc-500 shadow rounded-lg"
+              src={heroImage}
+              alt="hero-image"
+            />
           </div>
           <div className="max-w-[768px] mx-auto px-4 mb-4 sm:mb-8">
             <p className="text-center text-2xl sm:text-4xl font-bold">
@@ -78,7 +101,6 @@ export default function WelcomePage() {
               any device, at any time.
             </p>
           </div>
-
           <div className="w-full mx-auto mb-4 sm:mb-8">
             <p className="text-xl md:text-3xl font-black mb-2 sm:mb-4">
               Reasons to join us
@@ -103,7 +125,6 @@ export default function WelcomePage() {
               ))}
             </div>
           </div>
-
           <div className="w-full mx-auto">
             <div className="text-center mb-2 sm:mb-4">
               <h1 className="text-xl sm:text-4xl font-bold mb-2 sm:mb-8">
@@ -117,21 +138,20 @@ export default function WelcomePage() {
               </p>
             </div>
             <ul className="w-full flex item-stretch flex-wrap justify-between gap-y-4">
-              {data?.results?.slice(0, 12).map((movie, index) => (
+              {data?.results?.slice(0, 12).map((movie) => (
                 <li
-                  key={index}
-                  className="w-[calc((100%/2)-10px)] sm:w-[calc((100%/4)-10px)] lg:w-[calc((100%/6)-10px)] rounded-lg overflow-hidden hover:scale-105 transition-all"
+                  key={movie.id}
+                  className="w-[calc((100%/2)-10px)] sm:w-[calc((100%/4)-10px)] lg:w-[calc((100%/6)-10px)] rounded-lg overflow-hidden hover:scale-105 transition-all relative cursor-pointer"
+                  onClick={() => handleShowMyModal(movie)}
                 >
-                  <Link className="relative" to={"/login"}>
-                    <div className="absolute text-sky-700 font-black text-xl left-3 top-2">
-                      VM.
-                    </div>
-                    <img
-                      className="w-full"
-                      src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                      alt={movie.title}
-                    />
-                  </Link>
+                  <div className="absolute text-sky-700 font-black text-xl left-3 top-2">
+                    VM.
+                  </div>
+                  <img
+                    className="w-full"
+                    src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                    alt={movie.title}
+                  />
                 </li>
               ))}
             </ul>
