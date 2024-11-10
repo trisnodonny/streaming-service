@@ -103,16 +103,20 @@ export default function LoginPage() {
 
   return (
     <>
-      <div className="bg-blue-200 sm:bg-transparent">
+      <div className="bg-black sm:bg-transparent z-50 relative">
         <Header />
-        <div className="container mx-auto md:px-4 md:mb-12 sm:max-w-[450px]">
-          <div className="w-full mx-auto bg-blue-200 p-6">
+        <div className="container mx-auto md:px-4 md:mb-12 sm:max-w-[450px] h-max flex items-center justify-center z-50">
+          <div className="w-full mx-auto bg-black bg-opacity-50 p-8 rounded-md">
             <div className="flex flex-col gap-4 justify-center">
-              <div className="text-2xl mb-4">Sign In</div>
+              <div className="text-3xl mb-4 font-bold">Sign In</div>
               {isIncorrect && (
-                <div className="p-4 bg-yellow-500 rounded-md">
+                <div className="p-4 bg-rose-700 rounded-md">
                   <p className="font-bold">
                     Incorrect username / password for {errorUsername}.
+                  </p>
+                  <p className="text-sm">
+                    Oops! That doesn't seem right. Please verify your username
+                    and password.
                   </p>
                 </div>
               )}
@@ -138,14 +142,20 @@ export default function LoginPage() {
               />
               <Button label="Sign In" onClick={handleLogin} />
             </div>
-            <div className="text-center py-4">
-              <span>
-                New to Myflix? <Link to={"/register"}>Sign Up</Link>
-              </span>
+            <div className="text-center py-4 flex gap-2 items-center justify-center">
+              <span className="opacity-50">New to VM?</span>
+              <Link
+                className="hover:underline transition-all font-semibold"
+                to={"/register"}
+              >
+                Sign up now.
+              </Link>
             </div>
           </div>
         </div>
-        <Footer />
+        <footer className="container mx-auto max-w-[1200px]">
+          <Footer />
+        </footer>
       </div>
     </>
   );

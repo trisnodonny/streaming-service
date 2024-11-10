@@ -33,7 +33,6 @@ export default function RegisterPage() {
       confirmPassword: data.password !== data.confirmPassword,
     }));
   };
-
   const handleErrorRegister = () => {
     let hasError = false;
 
@@ -71,7 +70,6 @@ export default function RegisterPage() {
 
     return hasError;
   };
-
   const handleResetForm = () => {
     setData({
       firstname: "",
@@ -89,7 +87,6 @@ export default function RegisterPage() {
     });
     setIsUserExist(false);
   };
-
   const handleStoreData = () => {
     const hasError = handleErrorRegister();
     if (hasError) return;
@@ -119,24 +116,24 @@ export default function RegisterPage() {
       navigate("/login");
     }
   };
-
   const handleRegister = (ev) => {
     ev.preventDefault();
     handleStoreData();
   };
+
   return (
     <>
-      <div className="bg-blue-200 sm:bg-transparent">
+      <div className="bg-black sm:bg-transparent z-50 relative">
         <Header />
-        <div className="container mx-auto md:px-4 md:mb-12 sm:max-w-[450px]">
-          <div className="w-full mx-auto bg-blue-200 p-6">
+        <div className="container mx-auto md:px-4 md:mb-12 sm:max-w-[450px] h-max flex items-center justify-center z-50">
+          <div className="w-full mx-auto bg-black bg-opacity-50 p-8 rounded-md">
             <div className="flex flex-col gap-4 justify-center">
-              <div className="text-2xl mb-4">Sign Up</div>
+              <div className="text-3xl mb-4 font-bold">Sign Up</div>
               <div className="flex gap-2">
                 <InputField
                   type="text"
                   name="firstname"
-                  label="Firstname"
+                  label="First name"
                   value={data.firstname}
                   onChange={setData}
                   isError={isError.firstname}
@@ -146,7 +143,7 @@ export default function RegisterPage() {
                 <InputField
                   type="text"
                   name="lastname"
-                  label="Lastname"
+                  label="Last name"
                   value={data.lastname}
                   onChange={setData}
                   isError={isError.lastname}
@@ -187,14 +184,20 @@ export default function RegisterPage() {
               />
               <Button label="Sign Up" onClick={handleRegister} />
             </div>
-            <div className="text-center py-4">
-              <span>
-                Already have an account? <Link to={"/login"}>Sign In</Link>
-              </span>
+            <div className="text-center py-4 flex gap-2 items-center justify-center">
+              <span className="opacity-50">Already have an account?</span>
+              <Link
+                className="hover:underline transition-all font-semibold"
+                to={"/login"}
+              >
+                Sign In
+              </Link>
             </div>
           </div>
         </div>
-        <Footer />
+        <footer className="container mx-auto max-w-[1200px]">
+          <Footer />
+        </footer>
       </div>
     </>
   );

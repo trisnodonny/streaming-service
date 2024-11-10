@@ -4,10 +4,10 @@ import { useFetchData } from "@services/useFetchData";
 import Footer from "@components/entry/Footer";
 import heroImage from "@assets/images/hero-image.jpg";
 import welcomeImage2 from "@assets/images/welcome-image2.jpg";
-import exclusive from "@assets/icons/exclusive.png";
-import noAds from "@assets/icons/no-ads.png";
-import offlineViewing from "@assets/icons/offline-viewing.png";
-import personalize from "@assets/icons/personalize.png";
+import exclusive from "@assets/icons/exclusive-new.png";
+import noAds from "@assets/icons/no-ads-new.png";
+import offlineViewing from "@assets/icons/offline-viewing-new.png";
+import personalize from "@assets/icons/personalize-new.png";
 import MyModal from "@components/entry/MyModal";
 
 export default function WelcomePage() {
@@ -113,9 +113,9 @@ export default function WelcomePage() {
                 >
                   <p className="flex w-full font-bold">{reason.name}</p>
                   <div className="flex justify-end w-full">
-                    <div className="w-[50px] h-[50px] bg-sky-700 p-2 rounded-full">
+                    <div className="w-[50px] h-[50px] rounded-full">
                       <img
-                        className="invert"
+                        className=""
                         src={reason.icon}
                         alt={reason.name}
                       />

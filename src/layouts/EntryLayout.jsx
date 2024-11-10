@@ -1,5 +1,6 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import welcomeImage from "@assets/images/welcome-image.jpg";
 
 export default function EntryLayout() {
   const navigate = useNavigate();
@@ -22,7 +23,13 @@ export default function EntryLayout() {
 
   return (
     <>
-      <div className="bg-gradient-to-b from-zinc-900 to-black min-h-screen text-white">
+      <div
+        className="absolute bg-cover bg-center w-full h-lvh blur opacity-10 z-0"
+        style={{
+          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 1), transparent), url(${welcomeImage})`,
+        }}
+      ></div>
+      <div className="bg-gradient-to-b from-zinc-700 to-black min-h-screen text-white">
         <Outlet />
       </div>
     </>

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import eye from "@assets/icons/eye.png";
+import eyeCrossed from "@assets/icons/eye-crossed.png";
 
 export default function InputField({
   type = "text",
@@ -12,15 +14,15 @@ export default function InputField({
   onBlurError,
 }) {
   const [isFocus, setIsFocus] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const inputClass =
     type === "password"
-      ? "border border-black w-full pt-8 pb-2 pl-4 pr-10"
-      : "border border-black w-full pt-8 pb-2 px-4";
-
+      ? "text-white bg-black bg-opacity-20 border border-zinc-700 rounded-md border border-black w-full pt-6 pb-2 pl-4 pr-10"
+      : "text-white bg-black bg-opacity-20 border border-zinc-700 rounded-md border border-black w-full pt-6 pb-2 px-4";
   const baseLabelClass = "absolute left-4 pointer-events-none transition-all";
   const labelClass =
     isFocus || value
-      ? `${baseLabelClass} top-2`
+      ? `${baseLabelClass} top-2 text-xs`
       : `${baseLabelClass} top-1/2 -translate-y-1/2`;
 
   const handleChange = (ev) => {
@@ -30,7 +32,6 @@ export default function InputField({
       [name]: value,
     }));
   };
-
   const handleFocus = () => {
     setIsFocus(true);
     onError((prevData) => ({
@@ -38,7 +39,6 @@ export default function InputField({
       [name]: false,
     }));
   };
-
   const handleBlur = () => {
     setIsFocus(false);
     onError((prevData) => ({
@@ -65,14 +65,28 @@ export default function InputField({
       onBlurError();
     }
   };
+  const handleShowPassword = () => {
+    setShowPassword((prevState) => !prevState);
+  };
+
   return (
-    <div className="w-full ">
+    <div className="w-full text-zinc-300">
       <div className="relative">
         <p className={labelClass}>{label}</p>
+        {type === "password" && value && (
+          <div className="absolute right-2 top-1/2 transform -translate-y-1/2">
+            <button
+              className="flex p-2 w-[35px] hover:bg-zinc-800 rounded-full"
+              onMouseDown={handleShowPassword}
+            >
+              <img src={showPassword ? eyeCrossed : eye} alt="" />
+            </button>
+          </div>
+        )}
         <input
           className={inputClass}
           name={name}
-          type={type}
+          type={showPassword ? "text" : type}
           value={value}
           onChange={handleChange}
           onFocus={handleFocus}
@@ -80,7 +94,7 @@ export default function InputField({
         />
       </div>
       {isError && (
-        <p className="mt-1 text-rose-600 text-xs sm:text-md">{errorMsg}</p>
+        <p className="mt-1 text-rose-600 text-xs sm:text-[14px]">{errorMsg}</p>
       )}
     </div>
   );
