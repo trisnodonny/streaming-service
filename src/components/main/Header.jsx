@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import userIcon from "@assets/icons/user-icon.png";
+import search from "@assets/icons/search.png";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -16,11 +17,7 @@ export default function Header() {
     { id: 4, label: "kids", route: "/home/kids" },
   ]);
   const [username, setUsername] = useState("");
-  const [isSelected, setIsSelected] = useState(false);
-
-  const linkClass = isSelected
-    ? "uppercase font-bold text-sm pointer-events-none"
-    : "uppercase font-medium text-sm";
+  const [isShow, setIsShow] = useState(false);
 
   const handleLogout = (ev) => {
     ev.preventDefault();
@@ -44,14 +41,14 @@ export default function Header() {
             <Link to={"/home"} className="text-sky-700 font-bold text-3xl">
               VM.
             </Link>
-            <ul className="flex items-center gap-2 sm:gap-8 justify-center">
+            <ul className="flex items-center gap-2 sm:gap-6 justify-center">
               {links.map((link) => (
                 <li key={link.id}>
                   <Link
                     className={
                       route === link.label
-                        ? "border border-zinc-500 px-3 py-1 rounded-xl text-xs sm:border-0 bg-sky-700 text-white font-bold sm:text-base capitalize text-center text-sm pointer-events-none sm:bg-transparent sm:text-sky-700"
-                        : "border border-zinc-500 px-3 py-1 rounded-xl text-xs sm:border-0 text-xs sm:text-base capitalize text-center text-sm hover:text-zinc-300 transition-all"
+                        ? "border border-zinc-500 px-3 py-1 rounded-xl text-sm sm:border-0 bg-sky-700 text-white font-bold sm:text-base capitalize text-center pointer-events-none sm:bg-transparent sm:text-sky-700"
+                        : "border border-zinc-500 px-3 py-1 rounded-xl text-sm sm:border-0 sm:text-base capitalize text-center hover:text-zinc-300 transition-all"
                     }
                     to={link.route}
                   >
@@ -61,11 +58,28 @@ export default function Header() {
               ))}
             </ul>
           </div>
-          <div className="flex items-center gap-8">
-            <span className="hidden sm:block">Hi! {username}</span>
-            {/* <button onClick={handleLogout}>Sign out</button> */}
-            <div className="w-[30px] sm:w-[40px]">
-              <img src={userIcon} alt="user" />
+          <div className="absolute right-8 flex items-center gap-6 sm:static">
+            <div className="w-[20px]">
+              <img src={search} alt="serach" />
+            </div>
+            <div className="relative">
+              <div
+                className="w-[40px] cursor-pointer hover:scale-105 transition-all"
+                onClick={() => setIsShow((prevState) => !prevState)}
+              >
+                <img src={userIcon} alt="user" />
+              </div>
+              {isShow && (
+                <div className="absolute w-max flex flex-col items-start bg-zinc-800 right-0 mt-4 rounded-md z-50 overflow-hidden">
+                  <span className="w-max p-4">Hi! {username}</span>
+                  <button
+                    className="w-max border-t-[1px] border-zinc-500 w-full p-4 hover:bg-zinc-900"
+                    onClick={handleLogout}
+                  >
+                    Sign out of VM.
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>
