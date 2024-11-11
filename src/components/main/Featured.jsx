@@ -4,7 +4,7 @@ import welcomeImage2 from "@assets/images/welcome-image2.jpg";
 export default function Featured({ url }) {
   const key =
     "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMzAwMzc1Y2Q5MDEwZGJlMzVkZjE4MDI3YzExYTM3OSIsIm5iZiI6MTczMTExMTUyMC43NTAyNTY1LCJzdWIiOiI2NmUxNmIyYzFiYjEzNDlmZWY0MGE0N2QiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.tH1U0p70QV3OVwuLzmy_L2uT720Y7CDcx7TxrICfEh4";
-  const apiKey = import.meta.env.VITE_API_KEY || key;
+  const apiKey = key;
   const options = {
     method: "GET",
     headers: {
