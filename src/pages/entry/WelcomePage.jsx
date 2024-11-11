@@ -75,7 +75,7 @@ export default function WelcomePage() {
       <div className="relative">
         <header className="container mx-auto max-w-[1400px] relative z-10">
           <div className="flex items-center justify-between p-6 px-8 sm:px-4">
-            <Link to={"/"} className="text-sky-700 font-bold text-4xl">
+            <Link to={"/"} className="text-sky-700 font-bold text-3xl">
               VM.
             </Link>
             <Link

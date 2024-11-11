@@ -31,7 +31,7 @@ export default function MyModal({ onClose, isVisible, movie }) {
               />
               <div className="flex items-center gap-2 absolute bottom-4 left-8">
                 <span className="text-sky-700 font-bold text-3xl">VM.</span>
-                <span className="uppercase">Series</span>
+                {/* <span className="uppercase">Series</span> */}
               </div>
             </div>
             <div className="p-8 flex flex-col gap-2">

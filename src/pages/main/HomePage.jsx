@@ -1,17 +1,11 @@
-import { useNavigate } from "react-router-dom";
+import Header from "@components/main/Header";
+import Dashboard from "@components/main/Dashboard";
 
 export default function HomePage() {
-  const navigate = useNavigate();
-
-  const handleLogout = (ev) => {
-    ev.preventDefault();
-    localStorage.removeItem("authSession");
-    navigate("/login");
-  };
   return (
     <>
-      <div>HOMEPAGE</div>
-      <button onClick={handleLogout}>Logout</button>
+      <Header />
+      <Dashboard />
     </>
   );
 }

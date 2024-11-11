@@ -5,6 +5,8 @@ import LoginPage from "@pages/entry/LoginPage";
 import RegisterPage from "@pages/entry/RegisterPage";
 import WelcomePage from "@pages/entry/WelcomePage";
 import HomePage from "@pages/main/HomePage";
+import MoviesPage from "../pages/main/MoviesPage";
+import SeriesPage from "../pages/main/SeriesPage";
 
 const router = createBrowserRouter(
   [
@@ -17,11 +19,11 @@ const router = createBrowserRouter(
           element: <WelcomePage />,
         },
         {
-          path: "/login",
+          path: "login",
           element: <LoginPage />,
         },
         {
-          path: "/register",
+          path: "register",
           element: <RegisterPage />,
         },
       ],
@@ -33,6 +35,14 @@ const router = createBrowserRouter(
         {
           index: true,
           element: <HomePage />,
+        },
+        {
+          path: "/home/movies",
+          element: <MoviesPage />,
+        },
+        {
+          path: "/home/series",
+          element: <SeriesPage />,
         },
       ],
     },
