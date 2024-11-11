@@ -14,7 +14,7 @@ export default function Header() {
     { id: 1, label: "home", route: "/home" },
     { id: 2, label: "movies", route: "/home/movies" },
     { id: 3, label: "series", route: "/home/series" },
-    { id: 4, label: "kids", route: "/home/kids" },
+    { id: 4, label: "library", route: "/home/library" },
   ]);
   const [username, setUsername] = useState("");
   const [isShow, setIsShow] = useState(false);
@@ -22,7 +22,7 @@ export default function Header() {
   const handleLogout = (ev) => {
     ev.preventDefault();
     localStorage.removeItem("authSession");
-    navigate("/login");
+    navigate("/");
   };
 
   useEffect(() => {

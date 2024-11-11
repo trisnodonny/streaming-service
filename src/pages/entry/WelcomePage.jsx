@@ -11,12 +11,12 @@ import personalize from "@assets/icons/personalize-new.png";
 import MyModal from "@components/entry/MyModal";
 
 export default function WelcomePage() {
+  const apiKey = import.meta.env.VITE_API_KEY;
   const options = {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMzAwMzc1Y2Q5MDEwZGJlMzVkZjE4MDI3YzExYTM3OSIsIm5iZiI6MTczMTExMTUyMC43NTAyNTY1LCJzdWIiOiI2NmUxNmIyYzFiYjEzNDlmZWY0MGE0N2QiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.tH1U0p70QV3OVwuLzmy_L2uT720Y7CDcx7TxrICfEh4",
+      Authorization: `Bearer ${apiKey}`,
     },
   };
   const [url, setUrl] = useState("https://api.themoviedb.org/3/movie/popular");
@@ -114,11 +114,7 @@ export default function WelcomePage() {
                   <p className="flex w-full font-bold">{reason.name}</p>
                   <div className="flex justify-end w-full">
                     <div className="w-[50px] h-[50px] rounded-full">
-                      <img
-                        className=""
-                        src={reason.icon}
-                        alt={reason.name}
-                      />
+                      <img className="" src={reason.icon} alt={reason.name} />
                     </div>
                   </div>
                 </div>
