@@ -11,7 +11,7 @@ export default function Featured({ url }) {
     },
   };
   const { data, pending, error } = useFetchData(url, options);
-  console.log(data, "<><><><>");
+
   return (
     <>
       {data?.results?.slice(0, 1).map((movie) => (

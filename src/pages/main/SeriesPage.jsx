@@ -4,7 +4,7 @@ export default function SeriesPage() {
   return (
     <>
       <Header />
-      <p>Series</p>
+      <p>SERIES</p>
     </>
   );
 }

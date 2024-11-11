@@ -26,10 +26,10 @@ export default function HomePage() {
       url: "https://api.themoviedb.org/3/movie/popular",
     },
   ]);
-
   const [featured, setFeatured] = useState(
     "https://api.themoviedb.org/3/trending/all/day"
   );
+  const apiKey = import.meta.env.VITE_API_KEY;
 
   return (
     <>
