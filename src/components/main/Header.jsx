@@ -39,19 +39,19 @@ export default function Header() {
   return (
     <>
       <header className="container mx-auto max-w-[1400px] relative z-10">
-        <div className="flex items-center justify-between pt-6 px-8 sm:py-6 sm:px-4">
-          <div className="flex items-center gap-8">
+        <div className="flex items-start sm:items-center justify-between pt-6 px-8 sm:py-6 sm:px-4">
+          <div className="flex sm:items-center gap-4 sm:gap-8 sm:flex-row flex-col ">
             <Link to={"/home"} className="text-sky-700 font-bold text-3xl">
               VM.
             </Link>
-            <ul className="flex items-center gap-8 justify-center">
+            <ul className="flex items-center gap-2 sm:gap-8 justify-center">
               {links.map((link) => (
                 <li key={link.id}>
                   <Link
                     className={
                       route === link.label
-                        ? "capitalize text-center text-sm pointer-events-none text-sky-700"
-                        : "capitalize text-center text-sm hover:text-zinc-300 transition-all"
+                        ? "border border-zinc-500 px-3 py-1 rounded-xl text-xs sm:border-0 bg-sky-700 text-white font-bold sm:text-base capitalize text-center text-sm pointer-events-none sm:bg-transparent sm:text-sky-700"
+                        : "border border-zinc-500 px-3 py-1 rounded-xl text-xs sm:border-0 text-xs sm:text-base capitalize text-center text-sm hover:text-zinc-300 transition-all"
                     }
                     to={link.route}
                   >
@@ -62,9 +62,9 @@ export default function Header() {
             </ul>
           </div>
           <div className="flex items-center gap-8">
-            <span>Hi! {username}</span>
-            <button onClick={handleLogout}>Logout</button>
-            <div className="w-[40px]">
+            <span className="hidden sm:block">Hi! {username}</span>
+            {/* <button onClick={handleLogout}>Sign out</button> */}
+            <div className="w-[30px] sm:w-[40px]">
               <img src={userIcon} alt="user" />
             </div>
           </div>
