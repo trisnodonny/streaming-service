@@ -18,12 +18,22 @@ export default function Featured({ url }) {
     <>
       {data?.results && (
         <div className="relative" key={randomMovie?.id}>
-          <div className="absolute bottom-12 p-4 sm:p-12">
-            <h1 className="text-4xl font-black">{randomMovie?.name}</h1>
-            <p className="line-clamp-4">{randomMovie?.overview}</p>
-            <div>
-              <button className="py-2 px-4 bg-sky-700">Play</button>
-              <button className="py-2 px-4 border border-white">Detail</button>
+          <div className="absolute bottom-10 p-4 sm:p-12 flex flex-col gap-4">
+            <div className="flex gap-2">
+              <h1 className="text-4xl font-black">
+                {randomMovie?.name || randomMovie?.title}
+              </h1>
+              {(randomMovie?.name || randomMovie?.title) !==
+                (randomMovie?.original_name || randomMovie?.original_title) && (
+                <h1 className="text-4xl font-black">
+                  ({randomMovie?.original_name || randomMovie?.original_title})
+                </h1>
+              )}
+            </div>
+            <p className="line-clamp-4 max-w-[968px]">{randomMovie?.overview}</p>
+            <div className="flex gap-2">
+              <button className="py-2 px-6 bg-sky-700 hover:bg-sky-800 transition-all rounded-md capitalize">play</button>
+              <button className="py-2 px-6 border hover:bg-zinc-900 transition-all rounded-md capitalize">more detail</button>
             </div>
           </div>
           <div>

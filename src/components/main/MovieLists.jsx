@@ -47,8 +47,10 @@ export default function MovieLists({ label, url }) {
                 </div>
               </SwiperSlide>
             ))}
-            <div className="swiper-button-next text-white hover:scale-110 transition-all" />
-            <div className="swiper-button-prev text-white" />
+            <div className="hidden sm:block">
+              <div className="swiper-button-next text-white hover:scale-110 transition-all" />
+              <div className="swiper-button-prev text-white" />
+            </div>
           </Swiper>
         </div>
       </div>

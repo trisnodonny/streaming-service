@@ -2,6 +2,7 @@ import { useState } from "react";
 import Header from "@components/main/Header";
 import MovieLists from "@components/main/MovieLists";
 import Featured from "@components/main/Featured";
+import Footer from "../../components/main/Footer";
 
 export default function HomePage() {
   const [url, setUrl] = useState([
@@ -42,6 +43,7 @@ export default function HomePage() {
           <MovieLists key={index} label={movie.label} url={movie.url} />
         ))}
       </main>
+      <Footer />
     </>
   );
 }
