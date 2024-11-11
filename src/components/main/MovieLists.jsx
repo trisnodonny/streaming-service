@@ -38,7 +38,10 @@ export default function MovieLists({ label, url }) {
           >
             {data?.results?.map((movie) => (
               <SwiperSlide key={movie?.id} className="w-[100px] sm:w-[150px]">
-                <div className="w-full cursor-pointer hover:scale-105 transition-all rounded-md overflow-hidden">
+                <div
+                  onClick={""}
+                  className="w-full cursor-pointer hover:scale-105 transition-all rounded-md overflow-hidden"
+                >
                   <img
                     className="w-full"
                     src={`https://image.tmdb.org/t/p/w500/${movie?.poster_path}`}

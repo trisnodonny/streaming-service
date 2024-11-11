@@ -1,7 +1,10 @@
 import { useFetchData } from "@services/useFetchData";
-import welcomeImage2 from "@assets/images/welcome-image2.jpg";
+import MovieTeather from "@pages/entry/MovieTeather";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Featured({ url }) {
+  const navigate = useNavigate();
   const apiKey = import.meta.env.VITE_API_KEY;
   const options = {
     method: "GET",
@@ -14,12 +17,18 @@ export default function Featured({ url }) {
   const randomIndex = Math.floor(Math.random() * data?.results?.length);
   const randomMovie = data?.results[randomIndex];
 
+  const handleWatchMovie = (movie) => {
+    if (movie) {
+      navigate("/home/teather", { state: { movie } });
+    }
+  };
+
   return (
     <>
       {data?.results && (
         <div className="relative" key={randomMovie?.id}>
           <div className="absolute bottom-10 p-4 sm:p-12 flex flex-col gap-4">
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               <h1 className="text-4xl font-black">
                 {randomMovie?.name || randomMovie?.title}
               </h1>
@@ -30,10 +39,19 @@ export default function Featured({ url }) {
                 </h1>
               )}
             </div>
-            <p className="line-clamp-4 max-w-[968px]">{randomMovie?.overview}</p>
+            <p className="line-clamp-4 max-w-[968px]">
+              {randomMovie?.overview}
+            </p>
             <div className="flex gap-2">
-              <button className="py-2 px-6 bg-sky-700 hover:bg-sky-800 transition-all rounded-md capitalize">play</button>
-              <button className="py-2 px-6 border hover:bg-zinc-900 transition-all rounded-md capitalize">more detail</button>
+              <button
+                onClick={() => handleWatchMovie(randomMovie)}
+                className="py-2 px-6 bg-sky-700 hover:bg-sky-800 transition-all rounded-md capitalize"
+              >
+                watch now
+              </button>
+              <button className="py-2 px-6 border hover:bg-zinc-900 transition-all rounded-md capitalize">
+                more detail
+              </button>
             </div>
           </div>
           <div>
