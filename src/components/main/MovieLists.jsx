@@ -37,10 +37,13 @@ export default function MovieLists({ label, url }) {
             modules={[Navigation, Pagination, Scrollbar, A11y]}
           >
             {data?.results?.map((movie) => (
-              <SwiperSlide key={movie?.id} className="w-[100px] sm:w-[150px]">
+              <SwiperSlide
+                key={movie?.id}
+                className="w-[100px] sm:w-[150px] hover:scale-105 transition-all rounded-md overflow-hidden"
+              >
                 <Link
                   to={`/home/movie/${movie?.id}`}
-                  className="w-full cursor-pointer hover:scale-105 transition-all rounded-md overflow-hidden"
+                  className="w-full cursor-pointer"
                 >
                   <img
                     className="w-full"
