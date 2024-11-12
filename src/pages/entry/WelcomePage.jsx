@@ -9,9 +9,10 @@ import noAds from "@assets/icons/no-ads-new.png";
 import offlineViewing from "@assets/icons/offline-viewing-new.png";
 import personalize from "@assets/icons/personalize-new.png";
 import MyModal from "@components/entry/MyModal";
+import { key } from "@constants/key";
 
 export default function WelcomePage() {
-  const apiKey = import.meta.env.VITE_API_KEY;
+  const apiKey = import.meta.env.VITE_API_KEY || key;
   const options = {
     method: "GET",
     headers: {

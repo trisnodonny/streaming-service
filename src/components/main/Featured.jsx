@@ -2,9 +2,11 @@ import { useFetchData } from "@services/useFetchData";
 import TrailerPopUp from "@pages/main/TrailerPopUp";
 import { useState } from "react";
 import Loading from "@components/Loading";
+import { Link } from "react-router-dom";
+import { key } from "@constants/key";
 
 export default function Featured({ url }) {
-  const apiKey = import.meta.env.VITE_API_KEY;
+  const apiKey = import.meta.env.VITE_API_KEY || key;
   const options = {
     method: "GET",
     headers: {
@@ -12,9 +14,9 @@ export default function Featured({ url }) {
       Authorization: `Bearer ${apiKey}`,
     },
   };
-  const { data, pending, error } = useFetchData(url, options);
+  const { data, isPending, error } = useFetchData(url, options);
   const randomIndex = Math.floor(Math.random() * data?.results?.length);
-  const randomMovie = data?.results[randomIndex];
+  const randomMovie = data?.results[19];
   const [showTrailer, setShowTrailer] = useState(false);
 
   const handleShowTrailer = (ev) => {
@@ -28,7 +30,7 @@ export default function Featured({ url }) {
     document.body.classList.remove("overflow-hidden");
   };
 
-  if (pending) {
+  if (isPending) {
     return <Loading />;
   }
 
@@ -64,9 +66,12 @@ export default function Featured({ url }) {
               >
                 see trailer
               </button>
-              <button className="py-2 px-6 border hover:bg-zinc-700 transition-all rounded-md capitalize">
+              <Link
+                to={`/home/movie/${randomMovie?.id}`}
+                className="py-2 px-6 border hover:bg-zinc-700 transition-all rounded-md capitalize"
+              >
                 more detail
-              </button>
+              </Link>
             </div>
           </div>
           <div>

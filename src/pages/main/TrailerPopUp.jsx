@@ -1,8 +1,9 @@
 import { useFetchData } from "@services/useFetchData";
-import { useLocation, useNavigate } from "react-router-dom";
+import Loading from "../../components/Loading";
+import { key } from "@constants/key";
 
 export default function TrailerPopUp({ showTrailer, movie, onClose }) {
-  const apiKey = import.meta.env.VITE_API_KEY;
+  const apiKey = import.meta.env.VITE_API_KEY || key;
   const options = {
     method: "GET",
     headers: {
@@ -11,10 +12,10 @@ export default function TrailerPopUp({ showTrailer, movie, onClose }) {
     },
   };
   const url = `https://api.themoviedb.org/3/movie/${movie?.id}/videos`;
-  const { data, pending, error } = useFetchData(url, options);
+  const { data, isPending, error } = useFetchData(url, options);
 
   const videoKey = data?.results?.find(
-    (video) => video.site === "YouTube" && video.type === "Trailer"
+    (video) => video?.site === "YouTube" && video?.type === "Trailer"
   )?.key;
 
   const handleClose = () => {
@@ -22,6 +23,10 @@ export default function TrailerPopUp({ showTrailer, movie, onClose }) {
   };
 
   if (!showTrailer) return null;
+
+  if (isPending) {
+    return <Loading />;
+  }
 
   return (
     <>
@@ -38,7 +43,7 @@ export default function TrailerPopUp({ showTrailer, movie, onClose }) {
         {videoKey ? (
           <div className="relative w-full max-w-4xl h-[50vh] sm:h-[70vh] rounded-lg bg-gradient-to-b from-zinc-600 to-zinc-900 overflow-hidden">
             <iframe
-              className="w-full h-full"
+              className="w-full h-full shadow-zinc-500 shadow"
               src={`https://www.youtube.com/embed/${videoKey}?autoplay=1`}
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

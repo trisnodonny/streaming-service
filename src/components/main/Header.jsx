@@ -48,8 +48,8 @@ export default function Header() {
                     <Link
                       className={
                         route === link.label
-                          ? "border border-zinc-500 px-3 py-1 rounded-xl text-sm sm:border-0 bg-sky-700 text-white font-bold sm:text-base capitalize text-center pointer-events-none sm:bg-transparent sm:text-sky-700"
-                          : "border border-zinc-500 px-3 py-1 rounded-xl text-sm sm:border-0 sm:text-base capitalize text-center hover:text-zinc-300 transition-all"
+                          ? "border border-zinc-500 px-3 py-1 rounded-xl text-xs sm:border-0 bg-sky-700 text-white font-bold sm:text-base capitalize text-center pointer-events-none sm:bg-transparent sm:text-sky-700"
+                          : "border border-zinc-500 px-3 py-1 rounded-xl text-xs sm:border-0 sm:text-base capitalize text-center hover:text-zinc-300 transition-all"
                       }
                       to={link.route}
                     >

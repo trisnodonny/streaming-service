@@ -3,10 +3,10 @@ import Header from "@components/main/Header";
 import MovieLists from "@components/main/MovieLists";
 import Featured from "@components/main/Featured";
 import Footer from "@components/main/Footer";
-import Loading from "@components/Loading";
+import { key } from "@constants/key";
 
 export default function HomePage() {
-  const apiKey = import.meta.env.VITE_API_KEY;
+  const apiKey = import.meta.env.VITE_API_KEY || key;
   const [url, setUrl] = useState([
     {
       label: "today's pick",

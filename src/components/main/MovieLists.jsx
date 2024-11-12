@@ -6,9 +6,10 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { Link, useNavigate } from "react-router-dom";
+import { key } from "@constants/key";
 
 export default function MovieLists({ label, url }) {
-  const apiKey = import.meta.env.VITE_API_KEY;
+  const apiKey = import.meta.env.VITE_API_KEY || key;
   const options = {
     method: "GET",
     headers: {

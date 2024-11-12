@@ -11,6 +11,7 @@ export default defineConfig({
       '@layouts': `${path.resolve(__dirname, './src/layouts/')}`,
       '@services': `${path.resolve(__dirname, './src/services/')}`,
       '@assets': `${path.resolve(__dirname, './src/assets/')}`,
+      '@constants': `${path.resolve(__dirname, './src/constants/')}`,
     }
   },
   plugins: [react()],
