@@ -1,11 +1,11 @@
 import { useFetchData } from "@services/useFetchData";
-import MovieTeather from "@pages/entry/MovieTeather";
+import TrailerPopUp from "@pages/main/TrailerPopUp";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 export default function Featured({ url }) {
-  const navigate = useNavigate();
-  const apiKey = import.meta.env.VITE_API_KEY;
+  const apiKey =
+    import.meta.env.VITE_API_KEY ||
+    "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMzAwMzc1Y2Q5MDEwZGJlMzVkZjE4MDI3YzExYTM3OSIsIm5iZiI6MTczMTExMTUyMC43NTAyNTY1LCJzdWIiOiI2NmUxNmIyYzFiYjEzNDlmZWY0MGE0N2QiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.tH1U0p70QV3OVwuLzmy_L2uT720Y7CDcx7TxrICfEh4";
   const options = {
     method: "GET",
     headers: {
@@ -16,15 +16,26 @@ export default function Featured({ url }) {
   const { data, pending, error } = useFetchData(url, options);
   const randomIndex = Math.floor(Math.random() * data?.results?.length);
   const randomMovie = data?.results[randomIndex];
+  const [showTrailer, setShowTrailer] = useState(false);
 
-  const handleWatchMovie = (movie) => {
-    if (movie) {
-      navigate("/home/teather", { state: { movie } });
-    }
+  const handleShowTrailer = (ev) => {
+    ev.preventDefault();
+    setShowTrailer(true);
+    document.body.classList.add("overflow-hidden");
+  };
+
+  const handleCloseTrailer = () => {
+    setShowTrailer(false);
+    document.body.classList.remove("overflow-hidden");
   };
 
   return (
     <>
+      <TrailerPopUp
+        showTrailer={showTrailer}
+        movie={randomMovie}
+        onClose={handleCloseTrailer}
+      />
       {data?.results && (
         <div className="relative" key={randomMovie?.id}>
           <div className="absolute bottom-10 p-4 sm:p-12 flex flex-col gap-4">
@@ -44,12 +55,13 @@ export default function Featured({ url }) {
             </p>
             <div className="flex gap-2">
               <button
-                onClick={() => handleWatchMovie(randomMovie)}
+                type="button"
+                onClick={handleShowTrailer}
                 className="py-2 px-6 bg-sky-700 hover:bg-sky-800 transition-all rounded-md capitalize"
               >
-                watch now
+                see trailer
               </button>
-              <button className="py-2 px-6 border hover:bg-zinc-900 transition-all rounded-md capitalize">
+              <button className="py-2 px-6 border hover:bg-zinc-700 transition-all rounded-md capitalize">
                 more detail
               </button>
             </div>

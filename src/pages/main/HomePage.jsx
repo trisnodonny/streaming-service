@@ -2,7 +2,8 @@ import { useState } from "react";
 import Header from "@components/main/Header";
 import MovieLists from "@components/main/MovieLists";
 import Featured from "@components/main/Featured";
-import Footer from "../../components/main/Footer";
+import Footer from "@components/main/Footer";
+import Loading from "@components/Loading";
 
 export default function HomePage() {
   const [url, setUrl] = useState([
@@ -28,12 +29,13 @@ export default function HomePage() {
     },
   ]);
   const [featured, setFeatured] = useState(
-    "https://api.themoviedb.org/3/trending/all/day"
+    "https://api.themoviedb.org/3/movie/popular"
   );
   const apiKey = import.meta.env.VITE_API_KEY;
 
   return (
     <>
+      <Loading />
       <header className="fixed top-0 right-0 left-0 h-auto z-10">
         <Header />
       </header>
