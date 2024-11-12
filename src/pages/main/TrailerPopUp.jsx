@@ -36,7 +36,7 @@ export default function TrailerPopUp({ showTrailer, movie, onClose }) {
           ✖
         </button>
         {videoKey ? (
-          <div className="relative w-full max-w-4xl h-[70vh] rounded-lg bg-gradient-to-b from-zinc-600 to-zinc-900 overflow-hidden">
+          <div className="relative w-full max-w-4xl h-[50vh] sm:h-[70vh] rounded-lg bg-gradient-to-b from-zinc-600 to-zinc-900 overflow-hidden">
             <iframe
               className="w-full h-full"
               src={`https://www.youtube.com/embed/${videoKey}?autoplay=1`}

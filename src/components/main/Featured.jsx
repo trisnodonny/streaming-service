@@ -1,6 +1,7 @@
 import { useFetchData } from "@services/useFetchData";
 import TrailerPopUp from "@pages/main/TrailerPopUp";
 import { useState } from "react";
+import Loading from "@components/Loading";
 
 export default function Featured({ url }) {
   const apiKey = import.meta.env.VITE_API_KEY;
@@ -26,6 +27,10 @@ export default function Featured({ url }) {
     setShowTrailer(false);
     document.body.classList.remove("overflow-hidden");
   };
+
+  if (pending) {
+    return <Loading />;
+  }
 
   return (
     <>

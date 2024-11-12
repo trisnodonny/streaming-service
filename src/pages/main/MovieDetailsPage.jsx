@@ -3,6 +3,7 @@ import Header from "@components/main/Header";
 import { useState } from "react";
 import { useFetchData } from "@services/useFetchData";
 import { durationFormatter } from "../../helpers/durationFormatter";
+import Loading from "../../components/Loading";
 
 export default function MovieDetailsPage() {
   const apiKey = import.meta.env.VITE_API_KEY;
@@ -17,6 +18,10 @@ export default function MovieDetailsPage() {
   const [url, setUrl] = useState(`https://api.themoviedb.org/3/movie/${id}`);
 
   const { data, pending, error } = useFetchData(url, options);
+
+  if (pending) {
+    return <Loading />;
+  }
 
   return (
     <>
