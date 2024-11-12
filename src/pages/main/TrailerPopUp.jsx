@@ -2,9 +2,7 @@ import { useFetchData } from "@services/useFetchData";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export default function TrailerPopUp({ showTrailer, movie, onClose }) {
-  const apiKey =
-    import.meta.env.VITE_API_KEY ||
-    "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMzAwMzc1Y2Q5MDEwZGJlMzVkZjE4MDI3YzExYTM3OSIsIm5iZiI6MTczMTExMTUyMC43NTAyNTY1LCJzdWIiOiI2NmUxNmIyYzFiYjEzNDlmZWY0MGE0N2QiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.tH1U0p70QV3OVwuLzmy_L2uT720Y7CDcx7TxrICfEh4";
+  const apiKey = import.meta.env.VITE_API_KEY;
   const options = {
     method: "GET",
     headers: {
