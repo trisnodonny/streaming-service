@@ -18,8 +18,6 @@ export default function MovieDetailsPage() {
 
   const { data, pending, error } = useFetchData(url, options);
 
-  console.log(data, "<<<<<");
-
   return (
     <>
       <div

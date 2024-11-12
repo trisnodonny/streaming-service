@@ -19,7 +19,6 @@ export default function MovieLists({ label, url }) {
   };
   const { data, pending, error } = useFetchData(url, options);
 
-  console.log(data, '<<<<<<')
   return (
     <>
       <div className="container mx-auto max-w-[1400px] p-4">
