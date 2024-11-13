@@ -26,8 +26,8 @@ export default function MovieDetailsPage() {
   const [isAddedToLibrary, setIsAddedToLibrary] = useState(false);
 
   const addClass = isAddedToLibrary
-    ? "absolute w-max -right-[80px] top-1/2 transform -translate-y-1/2 hidden group-hover:flex bg-green-800 px-2 py-1 rounded-md"
-    : "absolute w-max -right-[105px] top-1/2 transform -translate-y-1/2 hidden group-hover:flex bg-sky-800 px-2 py-1 rounded-md";
+    ? "absolute w-max -right-[80px] top-1/2 transform -translate-y-1/2 hidden md:group-hover:flex bg-green-800 px-2 py-1 rounded-md"
+    : "absolute w-max -right-[105px] top-1/2 transform -translate-y-1/2 hidden md:group-hover:flex bg-sky-800 px-2 py-1 rounded-md";
 
   useEffect(() => {
     const library = JSON.parse(localStorage.getItem("myLibrary")) || [];
@@ -84,7 +84,7 @@ export default function MovieDetailsPage() {
       <Header />
       <main className="container mx-auto max-w-[1200px] pb-8 px-8 sm:px-6 md:px-8 relative z-10">
         <div className="flex gap-8 flex-col sm:flex-row">
-          <div className="w-full sm:max-w-[400px] border border-zinc-500 rounded-md overflow-hidden">
+          <div className="w-full sm:max-w-[300px] lg:max-w-[400px] border border-zinc-500 rounded-md overflow-hidden">
             <img
               className="w-full"
               src={`https://image.tmdb.org/t/p/w500/${data?.poster_path}`}
@@ -111,7 +111,7 @@ export default function MovieDetailsPage() {
                 watch now
               </button>
               <button
-                className="py-2 px-6 bg-sky-700 hover:bg-sky-800 transition-all rounded-md capitalize"
+                className="py-2 px-6 border hover:bg-zinc-700 transition-all rounded-md capitalize"
                 onClick={handleShowTrailer}
               >
                 see trailer
