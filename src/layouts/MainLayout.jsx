@@ -1,4 +1,4 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, ScrollRestoration } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export default function MainLayout() {
@@ -25,6 +25,7 @@ export default function MainLayout() {
       <div className="bg-black min-h-screen text-white">
         <Outlet />
       </div>
+      <ScrollRestoration />
     </>
   );
 }

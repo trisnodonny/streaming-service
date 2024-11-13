@@ -1,4 +1,4 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, ScrollRestoration } from "react-router-dom";
 import { useEffect, useState } from "react";
 import welcomeImage from "@assets/images/welcome-image.jpg";
 
@@ -32,6 +32,7 @@ export default function EntryLayout() {
       <div className="bg-gradient-to-b from-zinc-700 to-black min-h-screen text-white">
         <Outlet />
       </div>
+      <ScrollRestoration />
     </>
   );
 }

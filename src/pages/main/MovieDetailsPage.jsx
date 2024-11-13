@@ -8,7 +8,7 @@ import TrailerPopUp from "./TrailerPopUp";
 import { key } from "@constants/key";
 import check from "@assets/icons/check.png";
 import plus from "@assets/icons/plus.png";
-import Footer from "../../components/Footer";
+import Footer from "@components/Footer";
 
 export default function MovieDetailsPage() {
   const apiKey = import.meta.env.VITE_API_KEY || key;
@@ -104,12 +104,12 @@ export default function MovieDetailsPage() {
               )}
             </div>
             <div className="flex gap-2 text-sm w-full items-center">
-              <button
+              <Link
+                to={`/home/teather/${data?.id}`}
                 className="py-2 px-6 bg-sky-700 hover:bg-sky-800 transition-all rounded-md capitalize"
-                onClick={handleShowTrailer}
               >
                 watch now
-              </button>
+              </Link>
               <button
                 className="py-2 px-6 border hover:bg-zinc-700 transition-all rounded-md capitalize"
                 onClick={handleShowTrailer}
