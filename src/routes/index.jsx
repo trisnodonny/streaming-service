@@ -7,7 +7,8 @@ import WelcomePage from "@pages/entry/WelcomePage";
 import HomePage from "@pages/main/HomePage";
 import MoviesPage from "@pages/main/MoviesPage";
 import SeriesPage from "@pages/main/SeriesPage";
-import MovieDetailsPage from "../pages/main/MovieDetailsPage";
+import MovieDetailsPage from "@pages/main/MovieDetailsPage";
+import LibraryPage from "@pages/main/LibraryPage";
 
 const router = createBrowserRouter(
   [
@@ -48,6 +49,10 @@ const router = createBrowserRouter(
         {
           path: "/home/movie/:id",
           element: <MovieDetailsPage />,
+        },
+        {
+          path: "/home/library",
+          element: <LibraryPage />,
         },
       ],
     },

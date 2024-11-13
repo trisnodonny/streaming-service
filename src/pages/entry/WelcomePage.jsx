@@ -10,6 +10,7 @@ import offlineViewing from "@assets/icons/offline-viewing-new.png";
 import personalize from "@assets/icons/personalize-new.png";
 import MyModal from "@components/entry/MyModal";
 import { key } from "@constants/key";
+import Loading from "../../components/Loading";
 
 export default function WelcomePage() {
   const apiKey = import.meta.env.VITE_API_KEY || key;
@@ -57,6 +58,8 @@ export default function WelcomePage() {
     setShowMyModal(false);
     document.body.classList.remove("overflow-hidden");
   };
+
+  if (isPending) return <Loading />;
 
   return (
     <>

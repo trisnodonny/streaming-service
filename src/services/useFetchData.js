@@ -11,7 +11,7 @@ export const useFetchData = (url, options = {}) => {
       setIsPending(true)
       try {
         const response = await axios.get(url, options)
-        const data = response.data
+        const data = response?.data
         setIsPending(false)
         setData(data)
         setError(null)

@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import Header from "@components/main/Header";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFetchData } from "@services/useFetchData";
 import { durationFormatter } from "../../helpers/durationFormatter";
 import Loading from "../../components/Loading";
@@ -21,8 +21,7 @@ export default function MovieDetailsPage() {
   const { data, isPending, error } = useFetchData(url, options);
   const [showTrailer, setShowTrailer] = useState(false);
 
-  const handleShowTrailer = (ev) => {
-    ev.preventDefault();
+  const handleShowTrailer = () => {
     setShowTrailer(true);
     document.body.classList.add("overflow-hidden");
   };
@@ -44,15 +43,12 @@ export default function MovieDetailsPage() {
           backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 1), transparent), url(https://image.tmdb.org/t/p/w500/${data?.backdrop_path})`,
         }}
       ></div>
-
       <Header />
-
       <TrailerPopUp
         showTrailer={showTrailer}
         movie={data}
         onClose={handleCloseTrailer}
       />
-
       <main className="container mx-auto max-w-[1200px] pb-8 px-8 sm:px-6 md:px-8 relative z-10">
         <div className="flex gap-8 flex-col sm:flex-row">
           <div className="w-full sm:max-w-[400px] border border-zinc-500 rounded-md overflow-hidden">

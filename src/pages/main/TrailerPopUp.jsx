@@ -36,7 +36,7 @@ export default function TrailerPopUp({ showTrailer, movie, onClose }) {
       >
         <button
           onClick={handleClose}
-          className="absolute top-5 right-5 w-10 h-10 flex items-center justify-center text-white text-xl z-50 bg-zinc-800 rounded-full transition-colors"
+          className="absolute top-5 right-5 w-10 h-10 flex items-center justify-center text-white text-xl z-50 bg-zinc-800 hover:bg-rose-600 rounded-full transition-colors"
         >
           ✖
         </button>
