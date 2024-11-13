@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useFetchData } from "@services/useFetchData";
-import Footer from "@components/entry/Footer";
+import Footer from "@components/Footer";
 import heroImage from "@assets/images/hero-image.jpg";
 import welcomeImage2 from "@assets/images/welcome-image2.jpg";
 import exclusive from "@assets/icons/exclusive-new.png";
@@ -10,7 +10,7 @@ import offlineViewing from "@assets/icons/offline-viewing-new.png";
 import personalize from "@assets/icons/personalize-new.png";
 import MyModal from "@components/entry/MyModal";
 import { key } from "@constants/key";
-import Loading from "../../components/Loading";
+import Loading from "@components/Loading";
 
 export default function WelcomePage() {
   const apiKey = import.meta.env.VITE_API_KEY || key;

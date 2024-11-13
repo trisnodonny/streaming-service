@@ -2,7 +2,7 @@ import { useState } from "react";
 import Header from "@components/main/Header";
 import MovieLists from "@components/main/MovieLists";
 import Featured from "@components/main/Featured";
-import Footer from "@components/main/Footer";
+import Footer from "@components/Footer";
 import { key } from "@constants/key";
 
 export default function HomePage() {
@@ -44,7 +44,9 @@ export default function HomePage() {
           <MovieLists key={index} label={movie.label} url={movie.url} />
         ))}
       </main>
-      <Footer />
+      <footer className="container mx-auto max-w-[1200px]">
+        <Footer />
+      </footer>
     </>
   );
 }

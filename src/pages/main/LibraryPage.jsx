@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import goldStar from "@assets/icons/gold-star2.png";
 import check from "@assets/icons/check.png";
 import plus from "@assets/icons/plus.png";
+import Footer from "../../components/Footer";
 
 export default function LibraryPage() {
   const [movies, setMovies] = useState([]);
@@ -112,6 +113,9 @@ export default function LibraryPage() {
           </div>
         </div>
       </main>
+      <footer className="container mx-auto max-w-[1200px]">
+        <Footer />
+      </footer>
     </>
   );
 }

@@ -12,6 +12,7 @@ export default defineConfig({
       '@services': `${path.resolve(__dirname, './src/services/')}`,
       '@assets': `${path.resolve(__dirname, './src/assets/')}`,
       '@constants': `${path.resolve(__dirname, './src/constants/')}`,
+      '@helpers': `${path.resolve(__dirname, './src/helpers/')}`,
     }
   },
   plugins: [react()],
