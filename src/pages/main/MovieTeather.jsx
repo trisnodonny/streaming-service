@@ -4,6 +4,7 @@ import { useParams, Link } from "react-router-dom";
 import { useFetchData } from "@services/useFetchData";
 import Loading from "@components/Loading";
 import arrowLeft from "@assets/icons/arrow-small-left.png";
+import play from "@assets/icons/play.png";
 
 export default function MovieTeather() {
   const apiKey = import.meta.env.VITE_API_KEY || key;
@@ -30,17 +31,22 @@ export default function MovieTeather() {
   return (
     <>
       <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50">
-        <Link
-          className="flex absolute top-4 left-4 z-50"
-          to={`/home/movie/${data?.id}`}
-        >
-          <img className="w-[60px]" src={arrowLeft} alt="back" />
-        </Link>
+        <div>
+          <Link
+            className="flex absolute top-4 left-4 z-50"
+            to={`/home/movie/${data?.id}`}
+          >
+            <img className="w-[60px]" src={arrowLeft} alt="back" />
+          </Link>
+          <div className="absolute bottom-10 w-full z-50 px-4">
+            <img className="w-[40px]" src={play} alt="play" />
+          </div>
+        </div>
         {videoKey ? (
           <div className="relative w-full h-full flex justify-center items-center overflow-hidden z-0">
             <iframe
-              className="w-full h-4/5"
-              src={`https://www.youtube.com/embed/${videoKey}?autoplay=1&controls=0`}
+              className="w-full h-4/6"
+              src={`https://www.youtube.com/embed/${videoKey}?autoplay=0&controls=0`}
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
