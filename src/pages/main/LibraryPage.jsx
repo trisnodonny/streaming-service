@@ -13,6 +13,7 @@ import plus from "@assets/icons/plus.png";
 
 export default function LibraryPage() {
   const [movies, setMovies] = useState([]);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const library = JSON.parse(localStorage.getItem("myLibrary")) || [];
@@ -55,18 +56,21 @@ export default function LibraryPage() {
                     <div className="group-hover:block hidden">
                       <button
                         onClick={() => handleRemoveFromLibrary(movie)}
-                        className="absolute top-2 right-2 w-[30px] h-[30px] z-[60] rounded-full transition-all p-[8px] flex bg-green-700 hover:bg-rose-600"
+                        onMouseEnter={() => setIsHovered(true)}
+                        onMouseLeave={() => setIsHovered(false)}
+                        className={`absolute top-2 right-2 w-[30px] h-[30px] z-[60] rounded-full transition-all p-[8px] flex items-center justify-center ${
+                          isHovered ? "bg-rose-600" : "bg-green-700"
+                        }`}
                       >
-                        <img
-                          className="w-full group-hover:hidden flex"
-                          src={check}
-                          alt="added"
-                        />
-                        <img
-                          className="w-full rotate-45 hidden group-hover:flex"
-                          src={plus}
-                          alt="remove"
-                        />
+                        {isHovered ? (
+                          <img
+                            className="w-full rotate-45"
+                            src={plus}
+                            alt="remove"
+                          />
+                        ) : (
+                          <img className="w-full" src={check} alt="added" />
+                        )}
                       </button>
                     </div>
                     <Link to={`/home/movie/${movie?.id}`}>
