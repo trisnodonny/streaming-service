@@ -64,7 +64,7 @@ export default function Featured({ url }) {
                 onClick={handleShowTrailer}
                 className="py-2 px-6 bg-sky-700 hover:bg-sky-800 transition-all rounded-md capitalize"
               >
-                see trailer
+                play trailer
               </button>
               <Link
                 to={`/home/movie/${randomMovie?.id}`}

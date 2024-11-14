@@ -3,30 +3,44 @@ import Header from "@components/main/Header";
 import MovieLists from "@components/main/MovieLists";
 import Featured from "@components/main/Featured";
 import Footer from "@components/Footer";
-import { key } from "@constants/key";
 
 export default function HomePage() {
-  const apiKey = import.meta.env.VITE_API_KEY || key;
   const [url, setUrl] = useState([
     {
       label: "today's pick",
       url: "https://api.themoviedb.org/3/trending/all/day",
     },
     {
-      label: "trending tv show",
-      url: "https://api.themoviedb.org/3/trending/tv/day",
-    },
-    {
       label: "now playing",
       url: "https://api.themoviedb.org/3/movie/now_playing",
     },
     {
-      label: "top rated",
+      label: "airing today",
+      url: "https://api.themoviedb.org/3/tv/airing_today",
+    },
+    {
+      label: "popular movies",
+      url: "https://api.themoviedb.org/3/movie/popular",
+    },
+    {
+      label: "popular TV series",
+      url: "https://api.themoviedb.org/3/tv/popular",
+    },
+    {
+      label: "top rated movies",
       url: "https://api.themoviedb.org/3/movie/top_rated",
     },
     {
-      label: "popular",
-      url: "https://api.themoviedb.org/3/movie/popular",
+      label: "top rated TV series",
+      url: "https://api.themoviedb.org/3/tv/top_rated",
+    },
+    {
+      label: "upcoming movies",
+      url: "https://api.themoviedb.org/3/movie/upcoming",
+    },
+    {
+      label: "on the air",
+      url: "https://api.themoviedb.org/3/tv/on_the_air",
     },
   ]);
   const [featured, setFeatured] = useState(
@@ -40,8 +54,8 @@ export default function HomePage() {
       </header>
       <main>
         <Featured url={featured} />
-        {url.map((movie, index) => (
-          <MovieLists key={index} label={movie.label} url={movie.url} />
+        {url.map((list, index) => (
+          <MovieLists key={index} label={list.label} url={list.url} />
         ))}
       </main>
       <footer className="container mx-auto max-w-[1200px]">

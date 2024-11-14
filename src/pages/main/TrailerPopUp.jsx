@@ -55,7 +55,7 @@ export default function TrailerPopUp({ showTrailer, movie, onClose }) {
             </div>
           </div>
         ) : (
-          <p>NO TRAILER</p>
+          <p className="text-bold">TRAILER NOT AVAILABLE</p>
         )}
       </div>
     </>

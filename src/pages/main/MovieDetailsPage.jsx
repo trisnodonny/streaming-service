@@ -114,7 +114,7 @@ export default function MovieDetailsPage() {
                 className="py-2 px-6 border hover:bg-zinc-700 transition-all rounded-md capitalize"
                 onClick={handleShowTrailer}
               >
-                see trailer
+                play trailer
               </button>
               <div className="relative group">
                 <button

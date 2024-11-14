@@ -13,8 +13,8 @@ export default function Header() {
   const [links, setLinks] = useState([
     { id: 1, label: "home", route: "/home" },
     { id: 2, label: "movies", route: "/home/movies" },
-    { id: 3, label: "series", route: "/home/series" },
-    { id: 4, label: "library", route: "/home/library" },
+    { id: 3, label: "TV series", route: "/home/series" },
+    { id: 4, label: "watchlists", route: "/home/watchlists" },
   ]);
   const [username, setUsername] = useState("");
   const [isShow, setIsShow] = useState(false);
