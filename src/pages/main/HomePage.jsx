@@ -49,7 +49,7 @@ export default function HomePage() {
 
   return (
     <>
-      <header className="fixed top-0 right-0 left-0 h-auto z-10">
+      <header className="static sm:fixed top-0 right-0 left-0 h-auto z-10">
         <Header />
       </header>
       <main>

@@ -82,9 +82,9 @@ export default function MovieDetailsPage() {
         }}
       ></div>
       <Header />
-      <main className="container mx-auto max-w-[1200px] pb-8 px-8 sm:px-6 md:px-8 relative z-10">
+      <main className="container mx-auto max-w-[1200px] p-8 relative z-10">
         <div className="flex gap-8 flex-col sm:flex-row">
-          <div className="w-full sm:max-w-[300px] lg:max-w-[400px] border border-zinc-500 rounded-md overflow-hidden">
+          <div className="w-full sm:max-w-[300px] lg:max-w-80 border border-zinc-500 rounded-md overflow-hidden">
             <img
               className="w-full"
               src={`https://image.tmdb.org/t/p/w500/${data?.poster_path}`}

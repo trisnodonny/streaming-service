@@ -30,10 +30,11 @@ export default function TrailerPopUp({ showTrailer, movie, onClose }) {
 
   return (
     <>
-      <div
-        onClick={handleClose}
-        className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50"
-      >
+      <div className="fixed inset-0 flex items-center justify-center z-50">
+        <div
+          onClick={handleClose}
+          className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur"
+        ></div>
         <button
           onClick={handleClose}
           className="absolute top-5 right-5 w-10 h-10 flex items-center justify-center text-white text-xl z-50 bg-zinc-800 hover:bg-rose-600 rounded-full transition-colors"
@@ -41,7 +42,7 @@ export default function TrailerPopUp({ showTrailer, movie, onClose }) {
           ✖
         </button>
         {videoKey ? (
-          <div className="relative w-full max-w-4xl h-[50vh] sm:h-[70vh] rounded-lg bg-gradient-to-b from-zinc-600 to-zinc-900 overflow-hidden">
+          <div className="relative w-full max-w-4xl h-[50vh] sm:h-[70vh] rounded-lg bg-gradient-to-b from-zinc-600 to-zinc-900 overflow-hidden z-50">
             <iframe
               className="w-full h-full shadow-zinc-500 shadow"
               src={`https://www.youtube.com/embed/${videoKey}?autoplay=1`}

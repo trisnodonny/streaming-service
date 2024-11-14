@@ -11,6 +11,7 @@ import goldStar from "@assets/icons/gold-star2.png";
 import check from "@assets/icons/check.png";
 import plus from "@assets/icons/plus.png";
 import Footer from "@components/Footer";
+import MovieLists from "../../components/main/MovieLists";
 
 export default function LibraryPage() {
   const [movies, setMovies] = useState([]);
@@ -114,7 +115,9 @@ export default function LibraryPage() {
                 </div>
               </Swiper>
             ) : (
-              <p className="font-bold">Your lists is empty</p>
+              <div className="w-full justify-center items-center flex h-60">
+                <p className="font-bold">Your lists is empty</p>
+              </div>
             )}
           </div>
         </div>

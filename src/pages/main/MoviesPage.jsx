@@ -22,7 +22,6 @@ export default function MoviesPage() {
     },
   ]);
 
-  console.log(url);
   return (
     <>
       <Header />
