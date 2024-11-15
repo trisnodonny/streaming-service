@@ -45,26 +45,11 @@ export default function LoginPage() {
 
     return hasError;
   };
-  const handleResetForm = () => {
-    setData({
-      firstname: "",
-      lastname: "",
-      username: "",
-      password: "",
-      confirmPassword: "",
-    });
-    setIsError({
-      firstname: false,
-      lastname: false,
-      username: false,
-      password: false,
-      confirmPassword: false,
-    });
-    setIsUserExist(false);
-  };
+
   const handleFakeAccessToken = () => {
     return "fakeAccessToken12345";
   };
+
   const handleCheckingStoreData = () => {
     const hasError = handleErrorRegister();
     if (hasError) return;
@@ -92,13 +77,18 @@ export default function LoginPage() {
 
     localStorage.setItem("authSession", JSON.stringify(authSession));
     setIsIncorrect(false);
-    handleResetForm();
-
     navigate("/home");
   };
+
   const handleLogin = (ev) => {
     ev.preventDefault();
     handleCheckingStoreData();
+  };
+
+  const handleKeyDown = (ev) => {
+    if (ev.key === "Enter") {
+      handleCheckingStoreData();
+    }
   };
 
   return (
@@ -112,11 +102,10 @@ export default function LoginPage() {
               {isIncorrect && (
                 <div className="p-4 bg-rose-700 rounded-md">
                   <p className="font-bold">
-                    Incorrect username / password for {errorUsername}.
+                    Incorrect username/password for {errorUsername}.
                   </p>
                   <p className="text-sm">
-                    Oops! That doesn't seem right. Please verify your username
-                    and password.
+                    Please verify your username and password.
                   </p>
                 </div>
               )}
@@ -139,6 +128,7 @@ export default function LoginPage() {
                 isError={isError.password}
                 onError={setIsError}
                 errorMsg="Password must contain between 4 and 60 characters."
+                onKeyDown={handleKeyDown}
               />
               <Button label="Sign In" onClick={handleLogin} />
             </div>

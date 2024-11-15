@@ -120,6 +120,11 @@ export default function RegisterPage() {
     ev.preventDefault();
     handleStoreData();
   };
+  const handleKeyDown = (ev) => {
+    if (ev.key === "Enter") {
+      handleStoreData();
+    }
+  };
 
   return (
     <>
@@ -181,6 +186,7 @@ export default function RegisterPage() {
                 onError={setIsError}
                 errorMsg="Password doesn't match"
                 onBlurError={hanldeOnBlurConfirmPw}
+                onKeyDown={handleKeyDown}
               />
               <Button label="Sign Up" onClick={handleRegister} />
             </div>

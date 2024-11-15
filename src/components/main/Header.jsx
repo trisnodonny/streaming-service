@@ -1,10 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import userIcon from "@assets/icons/user-icon.png";
+import fox from "@assets/icons/fox.png";
 import search from "@assets/icons/search.png";
 import SearchMovie from "./SearchMovie";
 import dropDown from "@assets/icons/angle-circle-up.png";
+import user from "@assets/icons/user.png";
+import settings from "@assets/icons/settings.png";
+import logout from "@assets/icons/logout.png";
+import plus from "@assets/icons/plus.png";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -16,7 +20,7 @@ export default function Header() {
   const [links, setLinks] = useState([
     { id: 1, label: "home", route: "/home" },
     { id: 2, label: "movies", route: "/home/movies" },
-    { id: 3, label: "TV series", route: "/home/series" },
+    { id: 3, label: "series", route: "/home/series" },
     { id: 4, label: "watchlists", route: "/home/watchlists" },
   ]);
   const [username, setUsername] = useState("");
@@ -31,38 +35,39 @@ export default function Header() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
   useEffect(() => {
     if (isShowInputField && inputRef.current) {
       inputRef.current.focus();
     }
   }, [isShowInputField]);
-
   useEffect(() => {
     setOnSearchInput("");
   }, [location.pathname]);
-
-  const handleClickMagnify = () => {
-    setIsShowInputField((prevState) => !prevState);
-  };
-
-  const handleSearchInput = (ev) => {
-    const { value } = ev.target;
-    setOnSearchInput(value);
-  };
-
-  const handleLogout = (ev) => {
-    ev.preventDefault();
-    localStorage.removeItem("authSession");
-    navigate("/");
-  };
-
   useEffect(() => {
     const authSession = JSON.parse(localStorage.getItem("authSession"));
     if (authSession) {
       setUsername(authSession.username);
     }
   }, []);
+
+  const handleClickMagnify = () => {
+    setIsShowInputField((prevState) => !prevState);
+  };
+  const handleSearchInput = (ev) => {
+    const { value } = ev.target;
+    setOnSearchInput(value);
+  };
+  const handleLogout = (ev) => {
+    ev.preventDefault();
+    localStorage.removeItem("authSession");
+    navigate("/");
+  };
+  const handleResetSearchInput = () => {
+    if (onSearchInput) {
+      setOnSearchInput("");
+      setIsShowInputField(true);
+    }
+  };
 
   return (
     <>
@@ -124,14 +129,23 @@ export default function Header() {
             </div>
             <div className="flex items-center gap-4">
               <div className="relative">
-                <div
-                  onClick={handleClickMagnify}
-                  className={`${
-                    isShowInputField ? `w-4` : `w-5`
-                  } absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer transition-all z-10`}
-                >
-                  <img className="w-full" src={search} alt="search" />
-                </div>
+                {onSearchInput !== "" ? (
+                  <div
+                    onClick={handleResetSearchInput}
+                    className="w-4 absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer transition-all z-10 hover:opacity-80"
+                  >
+                    <img className="w-full rotate-45" src={plus} alt="clear" />
+                  </div>
+                ) : (
+                  <div
+                    onClick={handleClickMagnify}
+                    className={` ${
+                      isShowInputField ? "w-4" : "w-5"
+                    } absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer transition-all z-10 hover:opacity-80`}
+                  >
+                    <img className="w-full" src={search} alt="search" />
+                  </div>
+                )}
                 <input
                   ref={inputRef}
                   className={`${
@@ -151,18 +165,29 @@ export default function Header() {
                   className="w-8 cursor-pointer hover:scale-105 transition-all"
                   onClick={() => setIsShow((prevState) => !prevState)}
                 >
-                  <img className="w-full" src={userIcon} alt="user" />
+                  <img className="w-full" src={fox} alt="user" />
                 </div>
                 {isShow && (
-                  <div className="absolute w-max flex flex-col items-start bg-zinc-800 right-0 mt-4 rounded-md z-50 overflow-hidden">
-                    <span className="w-max p-4">Hi! {username}</span>
-                    <button
-                      className="w-max border-t-[1px] border-zinc-500 w-full p-4 hover:bg-zinc-900"
-                      onClick={handleLogout}
-                    >
-                      Sign out of VM.
-                    </button>
-                  </div>
+                  <ul className="absolute w-max flex flex-col items-start bg-zinc-800 right-0 mt-4 rounded-md z-50 overflow-hidden">
+                    <li className="w-full px-4 py-2">Hi! {username}</li>
+                    <li className="w-full px-4 py-2 flex items-center gap-2">
+                      <img className="w-4" src={user} alt="user" />
+                      <span>Profile</span>
+                    </li>
+                    <li className="w-full px-4 py-2 flex items-center gap-2">
+                      <img className="w-4" src={settings} alt="settings" />
+                      <span>Settings</span>
+                    </li>
+                    <li className="w-full px-4 py-2 flex items-center gap-2 border-zinc-500 hover:bg-zinc-900 border-t-[1px]">
+                      <img className="w-4" src={logout} alt="logout" />
+                      <button
+                        className="w-full hover:underline"
+                        onClick={handleLogout}
+                      >
+                        Sign out of VM.
+                      </button>
+                    </li>
+                  </ul>
                 )}
               </div>
             </div>

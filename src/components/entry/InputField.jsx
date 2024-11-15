@@ -11,14 +11,14 @@ export default function InputField({
   isError,
   onError,
   errorMsg,
-  onBlurError,
+  onKeyDown,
 }) {
   const [isFocus, setIsFocus] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const inputClass =
     type === "password"
-      ? "text-white bg-black bg-opacity-20 border border-zinc-700 rounded-md border border-black w-full pt-6 pb-2 pl-4 pr-10"
-      : "text-white bg-black bg-opacity-20 border border-zinc-700 rounded-md border border-black w-full pt-6 pb-2 px-4";
+      ? "text-white bg-black bg-opacity-20 border border-zinc-700 rounded-md w-full pt-6 pb-2 pl-4 pr-10"
+      : "text-white bg-black bg-opacity-20 border border-zinc-700 rounded-md w-full pt-6 pb-2 px-4";
   const baseLabelClass = "absolute left-4 pointer-events-none transition-all";
   const labelClass =
     isFocus || value
@@ -41,32 +41,14 @@ export default function InputField({
   };
   const handleBlur = () => {
     setIsFocus(false);
-    onError((prevData) => ({
-      ...prevData,
-      [name]: true,
-    }));
-    if (value) {
-      let hasError = false;
-      if (
-        (name === "firstname" && value.length < 2) ||
-        (name === "lastname" && value.length < 2) ||
-        (name === "username" && (value.length < 4 || value.length > 20)) ||
-        (name === "password" && (value.length < 4 || value.length > 60))
-      ) {
-        hasError = true;
-      }
-
-      onError((prevData) => ({
-        ...prevData,
-        [name]: hasError,
-      }));
-    }
-    if (onBlurError) {
-      onBlurError();
-    }
   };
   const handleShowPassword = () => {
     setShowPassword((prevState) => !prevState);
+  };
+  const handleOnKeyDown = (ev) => {
+    if (onKeyDown) {
+      onKeyDown(ev);
+    }
   };
 
   return (
@@ -76,10 +58,14 @@ export default function InputField({
         {type === "password" && value && (
           <div className="absolute right-2 top-1/2 transform -translate-y-1/2">
             <button
+              type="button"
               className="flex p-2 w-[35px] hover:bg-zinc-800 rounded-full"
-              onMouseDown={handleShowPassword}
+              onClick={handleShowPassword}
             >
-              <img src={showPassword ? eyeCrossed : eye} alt="" />
+              <img
+                src={showPassword ? eyeCrossed : eye}
+                alt="toggle password visibility"
+              />
             </button>
           </div>
         )}
@@ -91,6 +77,7 @@ export default function InputField({
           onChange={handleChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
+          onKeyDown={handleOnKeyDown}
         />
       </div>
       {isError && (
