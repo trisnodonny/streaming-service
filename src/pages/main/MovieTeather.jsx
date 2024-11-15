@@ -41,44 +41,50 @@ export default function MovieTeather() {
 
   return (
     <>
-      <div className="flex items-center justify-center h-screen relative">
-        <Link
-          className="flex absolute top-4 left-4 z-50 hover:opacity-70 transition-all"
-          to={`/home/movie/${data?.id}`}
-        >
-          <img className="w-[60px]" src={arrowLeft} alt="back" />
-        </Link>
-        <div className="absolute z-50 bottom-0 p-4 w-full flex flex-col gap-2">
-          <div className="w-full flex items-center justify-center gap-4">
-            <div className="w-full flex items-center relative">
-              <span className="w-4 h-4 bg-sky-700 hover:bg-sky-800 cursor-pointer rounded-full"></span>
-              <span className="w-full h-1 rounded opacity-30 bg-white"></span>
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="relative rotate-90 sm:rotate-0 flex w-full sm:h-screen items-center justify-center">
+          <Link
+            className="flex absolute top-4 left-4 z-50 hover:opacity-70 transition-all"
+            to={`/home/movie/${data?.id}`}
+          >
+            <img className="w-12" src={arrowLeft} alt="back" />
+          </Link>
+          <div className="absolute z-50 bottom-0 p-4 w-full flex flex-col gap-2">
+            <div className="w-full flex items-center justify-center gap-4">
+              <div className="w-full flex items-center relative">
+                <span className="w-4 h-4 bg-sky-700 hover:bg-sky-800 cursor-pointer rounded-full"></span>
+                <span className="w-full h-1 rounded opacity-30 bg-white"></span>
+              </div>
+              <p className="w-max">{runTimeFormatter(details?.runtime)}</p>
+              <img
+                className={buttonControlClass}
+                src={fullScreen}
+                alt="fullscreen"
+              />
             </div>
-            <p className="w-max">{runTimeFormatter(details?.runtime)}</p>
-            <img
-              className={buttonControlClass}
-              src={fullScreen}
-              alt="fullscreen"
+            <div className="w-full flex items-center justify-center gap-6">
+              <img
+                className={buttonControlClass}
+                src={backward}
+                alt="backward"
+              />
+              <img className={buttonControlClass} src={play} alt="play" />
+              <img className={buttonControlClass} src={forward} alt="forward" />
+            </div>
+          </div>
+          {videoKey ? (
+            <iframe
+              className="w-full h-96 sm:h-[576px]"
+              src={`https://www.youtube.com/embed/${videoKey}?autoplay=0&controls=0`}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              title="Embedded youtube"
             />
-          </div>
-          <div className="w-full flex items-center justify-center gap-6">
-            <img className={buttonControlClass} src={backward} alt="backward" />
-            <img className={buttonControlClass} src={play} alt="play" />
-            <img className={buttonControlClass} src={forward} alt="forward" />
-          </div>
+          ) : (
+            <p>NO TRAILER</p>
+          )}
         </div>
-        {videoKey ? (
-          <iframe
-            className="w-full h-[576px]"
-            src={`https://www.youtube.com/embed/${videoKey}?autoplay=0&controls=0`}
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            title="Embedded youtube"
-          />
-        ) : (
-          <p>NO TRAILER</p>
-        )}
       </div>
     </>
   );
