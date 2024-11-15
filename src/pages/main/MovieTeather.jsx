@@ -7,8 +7,8 @@ import arrowLeft from "@assets/icons/arrow-small-left.png";
 import play from "@assets/icons/play.png";
 import forward from "@assets/icons/10sec-for.png";
 import backward from "@assets/icons/10sec-back.png";
-import fullScreen from "@assets/icons/fullScreen.png";
-import { runTimeFormatter } from "../../helpers/runTimeFormatter";
+import fullScreen from "@assets/icons/fullscreen.png";
+import { runTimeFormatter } from "@helpers/runTimeFormatter";
 
 export default function MovieTeather() {
   const apiKey = import.meta.env.VITE_API_KEY || key;
