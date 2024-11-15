@@ -69,7 +69,7 @@ export default function MovieTeather() {
         </div>
         {videoKey ? (
           <iframe
-            className="w-full sm:h-[576px]"
+            className="w-full h-full sm:h-[576px]"
             src={`https://www.youtube.com/embed/${videoKey}?autoplay=0&controls=0`}
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
