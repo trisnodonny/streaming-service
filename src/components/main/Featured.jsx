@@ -43,7 +43,7 @@ export default function Featured({ url }) {
       />
       {data?.results && (
         <div className="relative" key={randomMovie?.id}>
-          <div className="absolute bottom-10 p-4 sm:p-12 flex flex-col gap-4">
+          <div className="absolute bottom-24 sm:bottom-10 p-4 sm:p-12 flex flex-col gap-4">
             <div className="flex flex-wrap gap-2">
               <h1 className="text-4xl font-black">
                 {randomMovie?.name || randomMovie?.title}
