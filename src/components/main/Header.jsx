@@ -96,7 +96,7 @@ export default function Header() {
               <div
                 className={`${
                   screenWidth < 640
-                    ? `absolute bg-black/75 left-0 ${
+                    ? `absolute bg-gradient-to-b from-black to-black/75 left-0 ${
                         isDropDown
                           ? "block top-12 opacity-100 visible"
                           : "top-0 opacity-0 invisible"

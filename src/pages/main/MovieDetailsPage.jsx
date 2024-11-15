@@ -8,6 +8,7 @@ import TrailerPopUp from "./TrailerPopUp";
 import { key } from "@constants/key";
 import check from "@assets/icons/check.png";
 import plus from "@assets/icons/plus.png";
+import noImage from "@assets/icons/noimage.png";
 import Footer from "@components/Footer";
 
 export default function MovieDetailsPage() {
@@ -96,7 +97,14 @@ export default function MovieDetailsPage() {
                 alt=""
               />
             ) : (
-              <div className="w-full flex items-center justify-center h-52 sm:h-[400px]">
+              <div className="w-full flex items-center justify-center sm:h-[400px] flex-col p-4">
+                <div className="max-w-52 p-4">
+                  <img
+                    className="w-32 sm:w-full"
+                    src={noImage}
+                    alt="no image"
+                  />
+                </div>
                 <p>Image not found</p>
               </div>
             )}

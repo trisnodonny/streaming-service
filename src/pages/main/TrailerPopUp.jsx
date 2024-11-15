@@ -1,6 +1,7 @@
 import { useFetchData } from "@services/useFetchData";
-import Loading from "../../components/Loading";
+import Loading from "@components/Loading";
 import { key } from "@constants/key";
+import noTrailer from "@assets/icons/notrailer.png";
 
 export default function TrailerPopUp({ showTrailer, movie, onClose }) {
   const apiKey = import.meta.env.VITE_API_KEY || key;
@@ -37,7 +38,7 @@ export default function TrailerPopUp({ showTrailer, movie, onClose }) {
         ></div>
         <div className="w-full flex items-center justify-center h-auto">
           <div className="w-full flex items-center justify-end flex-col max-w-4xl bg-zinc-900 rounded-md overflow-hidden z-50 border border-zinc-700">
-            <div className="relative z-50 flex justify-between items-center w-full p-2">
+            <div className="relative z-50 flex justify-between items-center w-full p-2 border-b-2 border-zinc-800">
               <p className="font-bold text-xl px-2">
                 {movie?.title || movie?.name}
               </p>
@@ -63,7 +64,14 @@ export default function TrailerPopUp({ showTrailer, movie, onClose }) {
                 </div>
               </div>
             ) : (
-              <div className="w-full justify-center items-center flex h-60 flex-col">
+              <div className="w-full justify-center items-center flex flex-col p-4">
+                <div className="max-w-52">
+                  <img
+                    className="w-32 sm:w-full"
+                    src={noTrailer}
+                    alt="no trailer"
+                  />
+                </div>
                 <p className="text-bold">TRAILER NOT AVAILABLE</p>
               </div>
             )}

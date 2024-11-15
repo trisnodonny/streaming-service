@@ -8,6 +8,7 @@ import play from "@assets/icons/play.png";
 import forward from "@assets/icons/10sec-for.png";
 import backward from "@assets/icons/10sec-back.png";
 import fullScreen from "@assets/icons/fullscreen.png";
+import noMovie from "@assets/icons/no-movie.png";
 import { runTimeFormatter } from "@helpers/runTimeFormatter";
 
 export default function MovieTeather() {
@@ -77,7 +78,12 @@ export default function MovieTeather() {
             title="Embedded youtube"
           />
         ) : (
-          <p>NO TRAILER</p>
+          <div className="w-full justify-center items-center flex flex-col">
+            <div className="max-w-72 mb-4 p-4">
+              <img className="w-32 sm:w-full" src={noMovie} alt="no movie" />
+            </div>
+            <p className="font-bold">MOVIE CURRENTLY NOT AVAILABLE</p>
+          </div>
         )}
       </div>
     </>
