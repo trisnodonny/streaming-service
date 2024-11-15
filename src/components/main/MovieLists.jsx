@@ -54,7 +54,7 @@ export default function MovieLists({ label, url }) {
     }
   };
 
-  if (isPending) return <Loading />;
+  // if (isPending) return <Loading />;
 
   return (
     <>

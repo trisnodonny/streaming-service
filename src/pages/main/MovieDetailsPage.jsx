@@ -30,6 +30,10 @@ export default function MovieDetailsPage() {
     : "absolute w-max -right-[105px] top-1/2 transform -translate-y-1/2 hidden md:group-hover:flex bg-sky-800 px-2 py-1 rounded-md";
 
   useEffect(() => {
+    setUrl(`https://api.themoviedb.org/3/movie/${id}`);
+  }, [id]);
+
+  useEffect(() => {
     const library = JSON.parse(localStorage.getItem("myLibrary")) || [];
     const inLibrary = library.find((movie) => movie?.id === data?.id);
 
@@ -84,15 +88,21 @@ export default function MovieDetailsPage() {
       <Header />
       <main className="container mx-auto max-w-[1200px] p-8 relative z-10">
         <div className="flex gap-8 flex-col sm:flex-row">
-          <div className="w-full sm:max-w-[300px] lg:max-w-80 border border-zinc-500 rounded-md overflow-hidden">
-            <img
-              className="w-full"
-              src={`https://image.tmdb.org/t/p/w500/${data?.poster_path}`}
-              alt=""
-            />
+          <div className="w-full sm:max-w-64 lg:max-w-72 border border-zinc-500 rounded-md overflow-hidden">
+            {data?.poster_path ? (
+              <img
+                className="w-full"
+                src={`https://image.tmdb.org/t/p/w500/${data?.poster_path}`}
+                alt=""
+              />
+            ) : (
+              <div className="w-full flex items-center justify-center h-52 sm:h-[400px]">
+                <p>Image not found</p>
+              </div>
+            )}
           </div>
-          <div className="w-full sm:w-3/5 flex flex-col gap-4">
-            <div className="flex flex-wrap items-center mb-4 gap-4">
+          <div className="w-full sm:w-4/5 flex flex-col gap-4">
+            <div className="flex flex-wrap items-center mb-4 gap-2">
               <h1 className="text-2xl sm:text-4xl font-black">
                 {data?.name || data?.title}
               </h1>
